@@ -28,8 +28,33 @@ myObj.speak('dog');
 // Principle 3
 
 // code example for New Binding
-
+function yellowSign(animal) {
+    this.warning = 'Beware of the '
+    this.animal = animal;
+    this.speak = function() {
+        console.log(this.warning + this.animal + `!`);
+    };
+}
+const lion = new yellowSign('lion');
+const bear = new yellowSign('bear');
+lion.speak();
+bear.speak();
 
 // Principle 4
 
 // code example for Explicit Binding
+function curriculum(obj) {
+    this.subject = obj.subject;
+    this.difficulty = obj.difficulty;
+    this.speak = function() {
+        console.log(`${this.subject} is ${this.difficulty} to learn`);
+    }
+}
+
+const math = new curriculum({subject: 'Math', difficulty: 'easy'});
+const veryEasy = new curriculum({subject: 'Math', difficulty: 'very easy'});
+const hard = new curriculum({subject: 'Math', difficulty: 'hard'});
+
+math.speak();
+math.speak.call(veryEasy);
+math.speak.apply(hard);
